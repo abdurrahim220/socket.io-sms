@@ -4,7 +4,7 @@ import { Server } from "socket.io";
 const app = express();
 const port = 4000;
 import path from "path";
-import { dirname, join } from 'node:path';
+import { dirname, join } from "node:path";
 
 import { fileURLToPath } from "url";
 
@@ -16,9 +16,10 @@ const io = new Server(httpServer);
 
 io.on("connection", (socket) => {
   console.log("Connection is ready!!");
+  socket.on("disconnect", () => {
+    console.log("Connection is disconnected!!");
+  });
 });
- 
-
 
 app.get("/", (req, res) => {
   //   res.send("Hello World");
