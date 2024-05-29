@@ -42,7 +42,7 @@ const ChatWindow = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    socket.emit("send-Message", { message });
+    socket.emit("send-Message", { message, roomId });
     setChat((prev) => [...prev, { message, received: false }]);
     setMessage("");
   };
