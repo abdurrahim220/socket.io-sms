@@ -19,9 +19,31 @@ const io = new Server(httpServer, {
 });
 
 io.on("connection", (socket) => {
-  console.log("Connection is ready!!");
+  socket.on("send-Message", (data) => {
+    socket.broadcast.emit("receive-Message", data);
+    // console.log("Message is sent : ", data);
+  });
+
+  socket.on("typing-started", ({ roomId }) => {
+    let skt = socket.broadcast;
+    skt = roomId ? skt.on(roomId) : skt;
+    skt.emit("typing-started-from-server");
+    // socket.broadcast.emit("typing-started-from-server");
+    // console.log("someone is typing");
+  });
+
+  socket.on("typing-stopped", () => {
+    socket.broadcast.emit("typing-stopped-from-server");
+    // console.log("someone is typing");
+  });
+
+  socket.on("join-room", ({ roomId }) => {
+    socket.join(roomId);
+    console.log(roomId);
+  });
+
   socket.on("disconnect", () => {
-    console.log("Connection is disconnected!!");
+    // console.log("Connection is disconnected!!");
   });
 });
 

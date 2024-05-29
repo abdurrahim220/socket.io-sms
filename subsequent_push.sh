@@ -2,7 +2,7 @@
 
 # Variables
 REPO_PATH="/home/masuma/Desktop/practice/socket.io"  # Path to your local repository location
-COMMIT_MESSAGE="client and backend setup done"  # Commit message
+COMMIT_MESSAGE="real time chat done"  # Commit message
 BRANCH="main"  # Branch name
 
 # Change to the repository directory
